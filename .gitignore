@@ -1,0 +1,10 @@
+*.o
+*.out
+
+*.cmd
+
+*.png
+*.jpg
+
+*.data
+*.dat
