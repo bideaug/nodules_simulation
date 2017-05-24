@@ -1,3 +1,14 @@
+/*Simulation champs moyen
+ *les populations considèrées sont n et nu, n pour la population de cellule CS (composante solide) et nu poru la population de cellule CVD (composante verre dépoli)
+ *les lettres de notre alphabet sont les taux pour la population de la CS et les lettres grec pour la CVD
+ *
+ *Chaqu'une des populations à 3 traits indicé 1, 2, 3. b1 est donc le taux de naissance associer à la population CS de trait 1, beta 1 est le taux de naissance associer
+ *à la population CVD de trait 1
+ *
+ *Je pense que beaucoup de taux de mutation ne seront pas utile mais il est plus facile de les mêttre dès le départ et de les mêttre à 0 que de devoir en rajouter après
+ *donc je les ai mis
+ */
+
 #include <iostream>
 #include <string>
 #include <cmath>
@@ -131,26 +142,26 @@ int main()
 	tauxMutation[2][1] = 1;     //taux de Mutation de n3 vers nu2
 	tauxMutation[2][2] = 1;     //taux de Mutation de n3 vers nu3
 
-	tauxMutation[3][0] = 1;     //taux de Mutation de nu1versr n1
-	tauxMutation[3][1] = 1;     //taux de Mutation de nu1versr n2
-	tauxMutation[3][2] = 1;     //taux de Mutation de nu1versr n3
-	tauxMutation[3][0] = 1;     //taux de Mutation de nu1versr nu1
-	tauxMutation[3][1] = 1;     //taux de Mutation de nu1versr nu2
-	tauxMutation[3][2] = 1;     //taux de Mutation de nu1versr nu3
+	tauxMutation[3][0] = 1;     //taux de Mutation de nu1 vers n1
+	tauxMutation[3][1] = 1;     //taux de Mutation de nu1 vers n2
+	tauxMutation[3][2] = 1;     //taux de Mutation de nu1 vers n3
+	tauxMutation[3][0] = 1;     //taux de Mutation de nu1 vers nu1
+	tauxMutation[3][1] = 1;     //taux de Mutation de nu1 vers nu2
+	tauxMutation[3][2] = 1;     //taux de Mutation de nu1 vers nu3
 
-	tauxMutation[4][0] = 1;     //taux de Mutation de nu2versr n1
-	tauxMutation[4][1] = 1;     //taux de Mutation de nu2versr n2
-	tauxMutation[4][2] = 1;     //taux de Mutation de nu2versr n3
-	tauxMutation[4][0] = 1;     //taux de Mutation de nu2versr nu1
-	tauxMutation[4][1] = 1;     //taux de Mutation de nu2versr nu2
-	tauxMutation[4][2] = 1;     //taux de Mutation de nu2versr nu3
+	tauxMutation[4][0] = 1;     //taux de Mutation de nu2 vers n1
+	tauxMutation[4][1] = 1;     //taux de Mutation de nu2 vers n2
+	tauxMutation[4][2] = 1;     //taux de Mutation de nu2 vers n3
+	tauxMutation[4][0] = 1;     //taux de Mutation de nu2 vers nu1
+	tauxMutation[4][1] = 1;     //taux de Mutation de nu2 vers nu2
+	tauxMutation[4][2] = 1;     //taux de Mutation de nu2 vers nu3
 
-	tauxMutation[5][0] = 1;     //taux de Mutation de nu3versr n1
-	tauxMutation[5][1] = 1;     //taux de Mutation de nu3versr n2
-	tauxMutation[5][2] = 1;     //taux de Mutation de nu3versr n3
-	tauxMutation[5][0] = 1;     //taux de Mutation de nu3versr nu1
-	tauxMutation[5][1] = 1;     //taux de Mutation de nu3versr nu2
-	tauxMutation[5][2] = 1;     //taux de Mutation de nu3versr nu3
+	tauxMutation[5][0] = 1;     //taux de Mutation de nu3 vers n1
+	tauxMutation[5][1] = 1;     //taux de Mutation de nu3 vers n2
+	tauxMutation[5][2] = 1;     //taux de Mutation de nu3 vers n3
+	tauxMutation[5][0] = 1;     //taux de Mutation de nu3 vers nu1
+	tauxMutation[5][1] = 1;     //taux de Mutation de nu3 vers nu2
+	tauxMutation[5][2] = 1;     //taux de Mutation de nu3 vers nu3
 
 //                               Taille des populations (2*3*nombreIteration)
 	vector< vector< vector<double> > > populationsSize;
