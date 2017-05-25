@@ -32,7 +32,7 @@ int main()
 	int const NOMBRE_DE_TRAIT(3);
 	int nombreIteration = NOMBRE_DE_VALEUR*K;
 
-	double const TAUX_MUTANT_MU(0);
+	double const TAUX_MUTANT_MU(0.5);
 	double X(0.); // X interval entre T[i] et T[i+1]
 	double tauxGlobal(0.); // taux global de tout les PPP ensemble
 // SAUVEGARDE DES DONNEES ! 
