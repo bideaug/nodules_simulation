@@ -27,7 +27,7 @@ int main()
 ******************************************************************************************/
 // PARAMETRE DU SYSTEME !
 	int const K(1);
-	int const NOMBRE_DE_VALEUR(250000);
+	int const NOMBRE_DE_VALEUR(2500);
 	int const NOMBRE_DE_POPULATION(2);
 	int const NOMBRE_DE_TRAIT(3);
 	int nombreIteration = NOMBRE_DE_VALEUR*K;
@@ -41,127 +41,127 @@ int main()
 // TABLEAU
 //                               taux de naissance (2*3)
 	vector< vector<double> > tauxNaissance(NOMBRE_DE_POPULATION, vector<double >(NOMBRE_DE_TRAIT));
-	tauxNaissance[0][0] = double(100);	//taux de naissance de n1    b1 
-	tauxNaissance[0][1] = double(10);	//taux de naissance de n2    b2 
-	tauxNaissance[0][2] = double(100);	//taux de naissance de n3    b3 
-	tauxNaissance[1][0] = double(10);	//taux de naissance de nu1   beta1
-	tauxNaissance[1][1] = double(100);	//taux de naissance de nu2   beta2
-	tauxNaissance[1][2] = double(10);	//taux de naissance de nu3   beta3
+	tauxNaissance[0][0] = double(1.000);	//taux de naissance de n1    b1 
+	tauxNaissance[0][1] = double(1.000);	//taux de naissance de n2    b2 
+	tauxNaissance[0][2] = double(1.000);	//taux de naissance de n3    b3 
+	tauxNaissance[1][0] = double(1.000);	//taux de naissance de nu1   beta1
+	tauxNaissance[1][1] = double(1.000);	//taux de naissance de nu2   beta2
+	tauxNaissance[1][2] = double(1.000);	//taux de naissance de nu3   beta3
 
 //                               taux de mort (2*3)
 	vector< vector<double> > tauxMort(NOMBRE_DE_POPULATION, vector<double >(NOMBRE_DE_TRAIT));
-	tauxMort[0][0] = double(20);	//taux de mort de n1    d1 
-	tauxMort[0][1] = double(10);	//taux de mort de n2    d2 
-	tauxMort[0][2] = double(15);	//taux de mort de n3    d3 
-	tauxMort[1][0] = double(8);	//taux de mort de nu1   delta1
-	tauxMort[1][1] = double(30);	//taux de mort de nu2   delta2
-	tauxMort[1][2] = double(9);	//taux de mort de nu3   delta3
+	tauxMort[0][0] = double(1.000);	//taux de mort de n1    d1 
+	tauxMort[0][1] = double(1.000);	//taux de mort de n2    d2 
+	tauxMort[0][2] = double(1.000);	//taux de mort de n3    d3 
+	tauxMort[1][0] = double(1.000);	//taux de mort de nu1   delta1
+	tauxMort[1][1] = double(1.000);	//taux de mort de nu2   delta2
+	tauxMort[1][2] = double(1.000);	//taux de mort de nu3   delta3
 
 //                               taux de chaque population (2*3)
 	vector< vector<double> > tauxEspece(NOMBRE_DE_POPULATION, vector<double >(NOMBRE_DE_TRAIT));
-	tauxEspece[0][0] = double(0);	//taux de n1 
-	tauxEspece[0][1] = double(0);	//taux de n2
-	tauxEspece[0][2] = double(0);	//taux de n3  
-	tauxEspece[1][0] = double(0);	//taux de nu1
-	tauxEspece[1][1] = double(0);	//taux de nu2
-	tauxEspece[1][2] = double(0);	//taux de nu3
+	tauxEspece[0][0] = double(0.000);	//taux de n1 
+	tauxEspece[0][1] = double(0.000);	//taux de n2
+	tauxEspece[0][2] = double(0.000);	//taux de n3  
+	tauxEspece[1][0] = double(0.000);	//taux de nu1
+	tauxEspece[1][1] = double(0.000);	//taux de nu2
+	tauxEspece[1][2] = double(0.000);	//taux de nu3
 
 //                               taux de chaque population (2*3)
 	vector< vector<double> > probaEspeces(NOMBRE_DE_POPULATION, vector<double >(NOMBRE_DE_TRAIT));
-	probaEspeces[0][0] = double(0);	//proba que n1 agisse
-	probaEspeces[0][1] = double(0);	//proba que n2 agisse
-	probaEspeces[0][2] = double(0);	//proba que n3 agisse  
-	probaEspeces[1][0] = double(0);	//proba que nu1 agisse
-	probaEspeces[1][1] = double(0);	//proba que nu2 agisse
-	probaEspeces[1][2] = double(0);	//proba que nu3 agisse
+	probaEspeces[0][0] = double(0.000);	//proba que n1 agisse
+	probaEspeces[0][1] = double(0.000);	//proba que n2 agisse
+	probaEspeces[0][2] = double(0.000);	//proba que n3 agisse  
+	probaEspeces[1][0] = double(0.000);	//proba que nu1 agisse
+	probaEspeces[1][1] = double(0.000);	//proba que nu2 agisse
+	probaEspeces[1][2] = double(0.000);	//proba que nu3 agisse
 
 //                               taux de compétition (6*6)
 	vector< vector<double> > tauxCompetition(NOMBRE_DE_POPULATION*NOMBRE_DE_TRAIT, vector<double>(NOMBRE_DE_POPULATION*NOMBRE_DE_TRAIT));
-	tauxCompetition[0][0] = double(1)/double(K);	//taux de competition de n1 sur n1 		c11  
-	tauxCompetition[0][1] = double(5)/double(K);	//taux de competition de n1 sur n2		c12
-	tauxCompetition[0][2] = double(15)/double(K);	//taux de competition de n1 sur n3		c13
-	tauxCompetition[0][3] = double(8)/double(K);	//taux de competition de n1 sur nu1		c14
-	tauxCompetition[0][4] = double(9)/double(K);	//taux de competition de n1 sur nu2		c15
-	tauxCompetition[0][5] = double(7)/double(K);	//taux de competition de n1 sur nu3		c16
+	tauxCompetition[0][0] = double(1.000)/double(K);	//taux de competition de n1 sur n1 		c11  
+	tauxCompetition[0][1] = double(1.000)/double(K);	//taux de competition de n1 sur n2		c12
+	tauxCompetition[0][2] = double(1.000)/double(K);	//taux de competition de n1 sur n3		c13
+	tauxCompetition[0][3] = double(1.000)/double(K);	//taux de competition de n1 sur nu1		c14
+	tauxCompetition[0][4] = double(1.000)/double(K);	//taux de competition de n1 sur nu2		c15
+	tauxCompetition[0][5] = double(1.000)/double(K);	//taux de competition de n1 sur nu3		c16
 
-	tauxCompetition[1][0] = double(8)/double(K);	//taux de competition de n2 sur n1		c21
-	tauxCompetition[1][1] = double(4)/double(K);	//taux de competition de n2 sur n2		c22
-	tauxCompetition[1][2] = double(10)/double(K);	//taux de competition de n2 sur n3		c23
-	tauxCompetition[1][3] = double(20)/double(K);	//taux de competition de n2 sur nu1		c24
-	tauxCompetition[1][4] = double(7)/double(K);	//taux de competition de n2 sur nu2		c25
-	tauxCompetition[1][5] = double(9)/double(K);	//taux de competition de n2 sur nu3		c26
+	tauxCompetition[1][0] = double(1.000)/double(K);	//taux de competition de n2 sur n1		c21
+	tauxCompetition[1][1] = double(1.000)/double(K);	//taux de competition de n2 sur n2		c22
+	tauxCompetition[1][2] = double(1.000)/double(K);	//taux de competition de n2 sur n3		c23
+	tauxCompetition[1][3] = double(1.000)/double(K);	//taux de competition de n2 sur nu1		c24
+	tauxCompetition[1][4] = double(1.000)/double(K);	//taux de competition de n2 sur nu2		c25
+	tauxCompetition[1][5] = double(1.000)/double(K);	//taux de competition de n2 sur nu3		c26
 
-	tauxCompetition[2][0] = double(100)/double(K);	//taux de competition de n3 sur n1		c31
-	tauxCompetition[2][1] = double(8)/double(K);	//taux de competition de n3 sur n2		c32
-	tauxCompetition[2][2] = double(9)/double(K);	//taux de competition de n3 sur n3		c33
-	tauxCompetition[2][3] = double(15)/double(K);	//taux de competition de n3 sur nu1		c34
-	tauxCompetition[2][4] = double(13)/double(K);	//taux de competition de n3 sur nu2		c35
-	tauxCompetition[2][5] = double(12)/double(K);	//taux de competition de n3 sur nu3		c36
+	tauxCompetition[2][0] = double(1.000)/double(K);	//taux de competition de n3 sur n1		c31
+	tauxCompetition[2][1] = double(1.000)/double(K);	//taux de competition de n3 sur n2		c32
+	tauxCompetition[2][2] = double(1.000)/double(K);	//taux de competition de n3 sur n3		c33
+	tauxCompetition[2][3] = double(1.000)/double(K);	//taux de competition de n3 sur nu1		c34
+	tauxCompetition[2][4] = double(1.000)/double(K);	//taux de competition de n3 sur nu2		c35
+	tauxCompetition[2][5] = double(1.000)/double(K);	//taux de competition de n3 sur nu3		c36
 
-	tauxCompetition[3][0] = double(10)/double(K);	//taux de competition de nu1 sur n1		c41
-	tauxCompetition[3][1] = double(100)/double(K);	//taux de competition de nu1 sur n2		c42
-	tauxCompetition[3][2] = double(15)/double(K);	//taux de competition de nu1 sur n3		c43
-	tauxCompetition[3][3] = double(13)/double(K);	//taux de competition de nu1 sur nu1		c44
-	tauxCompetition[3][4] = double(1)/double(K);	//taux de competition de nu1 sur nu2		c45
-	tauxCompetition[3][5] = double(18)/double(K);	//taux de competition de nu1 sur nu3		c46
+	tauxCompetition[3][0] = double(1.000)/double(K);	//taux de competition de nu1 sur n1		c41
+	tauxCompetition[3][1] = double(1.000)/double(K);	//taux de competition de nu1 sur n2		c42
+	tauxCompetition[3][2] = double(1.000)/double(K);	//taux de competition de nu1 sur n3		c43
+	tauxCompetition[3][3] = double(1.000)/double(K);	//taux de competition de nu1 sur nu1		c44
+	tauxCompetition[3][4] = double(1.000)/double(K);	//taux de competition de nu1 sur nu2		c45
+	tauxCompetition[3][5] = double(1.000)/double(K);	//taux de competition de nu1 sur nu3		c46
 
-	tauxCompetition[4][0] = double(8)/double(K);	//taux de competition de nu2 sur n1		c51
-	tauxCompetition[4][1] = double(91)/double(K);	//taux de competition de nu2 sur n2		c52
-	tauxCompetition[4][2] = double(15)/double(K);	//taux de competition de nu2 sur n3		c53
-	tauxCompetition[4][3] = double(13)/double(K);	//taux de competition de nu2 sur nu1		c54
-	tauxCompetition[4][4] = double(21)/double(K);	//taux de competition de nu2 sur nu2		c55
-	tauxCompetition[4][5] = double(45)/double(K);	//taux de competition de nu2 sur nu3		c56
+	tauxCompetition[4][0] = double(1.000)/double(K);	//taux de competition de nu2 sur n1		c51
+	tauxCompetition[4][1] = double(1.000)/double(K);	//taux de competition de nu2 sur n2		c52
+	tauxCompetition[4][2] = double(1.000)/double(K);	//taux de competition de nu2 sur n3		c53
+	tauxCompetition[4][3] = double(1.000)/double(K);	//taux de competition de nu2 sur nu1		c54
+	tauxCompetition[4][4] = double(1.000)/double(K);	//taux de competition de nu2 sur nu2		c55
+	tauxCompetition[4][5] = double(1.000)/double(K);	//taux de competition de nu2 sur nu3		c56
 
-	tauxCompetition[5][0] = double(15)/double(K);	//taux de competition de nu3 sur n1		c61
-	tauxCompetition[5][1] = double(95)/double(K);	//taux de competition de nu3 sur n2		c62
-	tauxCompetition[5][2] = double(8)/double(K);	//taux de competition de nu3 sur n3		c63
-	tauxCompetition[5][3] = double(65)/double(K);	//taux de competition de nu3 sur nu1		c64
-	tauxCompetition[5][4] = double(42)/double(K);	//taux de competition de nu3 sur nu2		c65
-	tauxCompetition[5][5] = double(42)/double(K);	//taux de competition de nu3 sur nu3		c66
+	tauxCompetition[5][0] = double(1.000)/double(K);	//taux de competition de nu3 sur n1		c61
+	tauxCompetition[5][1] = double(1.000)/double(K);	//taux de competition de nu3 sur n2		c62
+	tauxCompetition[5][2] = double(1.000)/double(K);	//taux de competition de nu3 sur n3		c63
+	tauxCompetition[5][3] = double(1.000)/double(K);	//taux de competition de nu3 sur nu1		c64
+	tauxCompetition[5][4] = double(1.000)/double(K);	//taux de competition de nu3 sur nu2		c65
+	tauxCompetition[5][5] = double(1.000)/double(K);	//taux de competition de nu3 sur nu3		c66
 
 //                               taux de mutation (6*6)
 	vector< vector<double> > tauxMutation(NOMBRE_DE_POPULATION*NOMBRE_DE_TRAIT, vector<double>(NOMBRE_DE_POPULATION*NOMBRE_DE_TRAIT));
-	tauxMutation[0][0] = double(7)/double(K);	//taux de Mutation de n1 vers n1		m11
-	tauxMutation[0][1] = double(8)/double(K);	//taux de Mutation de n1 vers n2		m12
-	tauxMutation[0][2] = double(95)/double(K);	//taux de Mutation de n1 vers n3		m13
-	tauxMutation[0][3] = double(12)/double(K);	//taux de Mutation de n1 vers nu1		m14
-	tauxMutation[0][4] = double(8)/double(K);	//taux de Mutation de n1 vers nu2		m15
-	tauxMutation[0][5] = double(5)/double(K);	//taux de Mutation de n1 vers nu3		m16
+	tauxMutation[0][0] = double(1.000)/double(K);	//taux de Mutation de n1 vers n1		m11
+	tauxMutation[0][1] = double(1.000)/double(K);	//taux de Mutation de n1 vers n2		m12
+	tauxMutation[0][2] = double(1.000)/double(K);	//taux de Mutation de n1 vers n3		m13
+	tauxMutation[0][3] = double(1.000)/double(K);	//taux de Mutation de n1 vers nu1		m14
+	tauxMutation[0][4] = double(1.000)/double(K);	//taux de Mutation de n1 vers nu2		m15
+	tauxMutation[0][5] = double(1.000)/double(K);	//taux de Mutation de n1 vers nu3		m16
 
-	tauxMutation[1][0] = double(18)/double(K);	//taux de Mutation de n2 vers n1		m21
-	tauxMutation[1][1] = double(12)/double(K);	//taux de Mutation de n2 vers n2		m22
-	tauxMutation[1][2] = double(21)/double(K);	//taux de Mutation de n2 vers n3		m23
-	tauxMutation[1][3] = double(31)/double(K);	//taux de Mutation de n2 vers nu1		m24
-	tauxMutation[1][4] = double(13)/double(K);	//taux de Mutation de n2 vers nu2		m25
-	tauxMutation[1][5] = double(15)/double(K);	//taux de Mutation de n2 vers nu3		m26
+	tauxMutation[1][0] = double(1.000)/double(K);	//taux de Mutation de n2 vers n1		m21
+	tauxMutation[1][1] = double(1.000)/double(K);	//taux de Mutation de n2 vers n2		m22
+	tauxMutation[1][2] = double(1.000)/double(K);	//taux de Mutation de n2 vers n3		m23
+	tauxMutation[1][3] = double(1.000)/double(K);	//taux de Mutation de n2 vers nu1		m24
+	tauxMutation[1][4] = double(1.000)/double(K);	//taux de Mutation de n2 vers nu2		m25
+	tauxMutation[1][5] = double(1.000)/double(K);	//taux de Mutation de n2 vers nu3		m26
 
-	tauxMutation[2][0] = double(0)/double(K);	//taux de Mutation de n3 vers n1		m31
-	tauxMutation[2][1] = double(12)/double(K);	//taux de Mutation de n3 vers n2		m32
-	tauxMutation[2][2] = double(6)/double(K);	//taux de Mutation de n3 vers n3		m33
-	tauxMutation[2][3] = double(63)/double(K);	//taux de Mutation de n3 vers nu1		m34
-	tauxMutation[2][4] = double(95)/double(K);	//taux de Mutation de n3 vers nu2		m35
-	tauxMutation[2][5] = double(7)/double(K);	//taux de Mutation de n3 vers nu3		m36
+	tauxMutation[2][0] = double(1.000)/double(K);	//taux de Mutation de n3 vers n1		m31
+	tauxMutation[2][1] = double(1.000)/double(K);	//taux de Mutation de n3 vers n2		m32
+	tauxMutation[2][2] = double(1.000)/double(K);	//taux de Mutation de n3 vers n3		m33
+	tauxMutation[2][3] = double(1.000)/double(K);	//taux de Mutation de n3 vers nu1		m34
+	tauxMutation[2][4] = double(1.000)/double(K);	//taux de Mutation de n3 vers nu2		m35
+	tauxMutation[2][5] = double(1.000)/double(K);	//taux de Mutation de n3 vers nu3		m36
 
-	tauxMutation[3][0] = double(85)/double(K);	//taux de Mutation de nu1 vers n1		m41
-	tauxMutation[3][1] = double(8)/double(K);	//taux de Mutation de nu1 vers n2		m42
-	tauxMutation[3][2] = double(34)/double(K);	//taux de Mutation de nu1 vers n3		m43
-	tauxMutation[3][3] = double(0)/double(K);	//taux de Mutation de nu1 vers nu1		m44
-	tauxMutation[3][4] = double(56)/double(K);	//taux de Mutation de nu1 vers nu2		m45
-	tauxMutation[3][5] = double(42)/double(K);	//taux de Mutation de nu1 vers nu3		m46
+	tauxMutation[3][0] = double(1.000)/double(K);	//taux de Mutation de nu1 vers n1		m41
+	tauxMutation[3][1] = double(1.000)/double(K);	//taux de Mutation de nu1 vers n2		m42
+	tauxMutation[3][2] = double(1.000)/double(K);	//taux de Mutation de nu1 vers n3		m43
+	tauxMutation[3][3] = double(1.000)/double(K);	//taux de Mutation de nu1 vers nu1		m44
+	tauxMutation[3][4] = double(1.000)/double(K);	//taux de Mutation de nu1 vers nu2		m45
+	tauxMutation[3][5] = double(1.000)/double(K);	//taux de Mutation de nu1 vers nu3		m46
 
-	tauxMutation[4][0] = double(21)/double(K);	//taux de Mutation de nu2 vers n1		m51
-	tauxMutation[4][1] = double(13)/double(K);	//taux de Mutation de nu2 vers n2		m52
-	tauxMutation[4][2] = double(1)/double(K);	//taux de Mutation de nu2 vers n3		m53
-	tauxMutation[4][3] = double(0)/double(K);	//taux de Mutation de nu2 vers nu1		m54
-	tauxMutation[4][4] = double(8)/double(K);	//taux de Mutation de nu2 vers nu2		m55
-	tauxMutation[4][5] = double(9)/double(K);	//taux de Mutation de nu2 vers nu3		m56
+	tauxMutation[4][0] = double(1.000)/double(K);	//taux de Mutation de nu2 vers n1		m51
+	tauxMutation[4][1] = double(1.000)/double(K);	//taux de Mutation de nu2 vers n2		m52
+	tauxMutation[4][2] = double(1.000)/double(K);	//taux de Mutation de nu2 vers n3		m53
+	tauxMutation[4][3] = double(1.000)/double(K);	//taux de Mutation de nu2 vers nu1		m54
+	tauxMutation[4][4] = double(1.000)/double(K);	//taux de Mutation de nu2 vers nu2		m55
+	tauxMutation[4][5] = double(1.000)/double(K);	//taux de Mutation de nu2 vers nu3		m56
 
-	tauxMutation[5][0] = double(5)/double(K);	//taux de Mutation de nu3 vers n1		m61
-	tauxMutation[5][1] = double(8)/double(K);	//taux de Mutation de nu3 vers n2		m62
-	tauxMutation[5][2] = double(7)/double(K);	//taux de Mutation de nu3 vers n3		m63
-	tauxMutation[5][3] = double(10)/double(K);	//taux de Mutation de nu3 vers nu1		m64
-	tauxMutation[5][4] = double(51)/double(K);	//taux de Mutation de nu3 vers nu2		m65
-	tauxMutation[5][5] = double(18)/double(K);	//taux de Mutation de nu3 vers nu3		m66
+	tauxMutation[5][0] = double(1.000)/double(K);	//taux de Mutation de nu3 vers n1		m61
+	tauxMutation[5][1] = double(1.000)/double(K);	//taux de Mutation de nu3 vers n2		m62
+	tauxMutation[5][2] = double(1.000)/double(K);	//taux de Mutation de nu3 vers n3		m63
+	tauxMutation[5][3] = double(1.000)/double(K);	//taux de Mutation de nu3 vers nu1		m64
+	tauxMutation[5][4] = double(1.000)/double(K);	//taux de Mutation de nu3 vers nu2		m65
+	tauxMutation[5][5] = double(1.000)/double(K);	//taux de Mutation de nu3 vers nu3		m66
 
 //                               Taille des populations (2*3*nombreIteration)
 	vector< vector< vector<double> > > populationsSize;
@@ -176,12 +176,12 @@ int main()
 	}
 
 //				 Population initial
-	populationsSize[0][0][0] = double(500);	//n1 (t=0)
-	populationsSize[0][1][0] = double(500);	//n2 (t=0)
-	populationsSize[0][2][0] = double(500);	//n3 (t=0)
-	populationsSize[1][0][0] = double(500);	//nu1(t=0)
-	populationsSize[1][1][0] = double(500);	//nu2(t=0)
-	populationsSize[1][2][0] = double(500);	//nu3(t=0)
+	populationsSize[0][0][0] = double(500.000);	//n1 (t=0)
+	populationsSize[0][1][0] = double(500.000);	//n2 (t=0)
+	populationsSize[0][2][0] = double(500.000);	//n3 (t=0)
+	populationsSize[1][0][0] = double(500.000);	//nu1(t=0)
+	populationsSize[1][1][0] = double(500.000);	//nu2(t=0)
+	populationsSize[1][2][0] = double(500.000);	//nu3(t=0)
 
 //                               T (nombreIteration)
 	vector<double> T(nombreIteration);
